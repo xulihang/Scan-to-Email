@@ -14,15 +14,16 @@ def send(msg,to):
     try:
         account = get_account()
         passwd = get_passwd()
-        server = smtplib.SMTP()
-        server.connect(get_smtp_server())
+        server = smtplib.SMTP(get_smtp_server(),587)
+        server.ehlo()
+        server.starttls()
         server.login(account,passwd)
         server.sendmail(account, to, msg.as_string())
         server.quit()
         print("Successfully sent email")
         return True
-    except SMTPException:
-        print(SMTPException)
+    except smtplib.SMTPException:
+        print("Failed")
         return False
 
 def build_message(to,link=None,filebytes=None,filename=None):
