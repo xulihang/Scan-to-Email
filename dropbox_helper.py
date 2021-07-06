@@ -7,7 +7,7 @@ from dropbox.exceptions import ApiError, AuthError
 class dropbox_helper:
 
     def __init__(self):
-        self.dbx = dropbox.Dropbox("sl.A0Emzcsz404L6iMHaj2oLKyLCIjptl9tV1zjdVYZ6Nw4Kp83ALbEHbaRRpR4J1yDj_8JatXcvGhO30MLqovS-6010z_pDv7GiB_q7sF2192mjCRE7Mh3i8LgCGeIsM0FrxOBMvHl")
+        self.dbx = dropbox.Dropbox("<access token>")
 
     def upload(self,filebytes,filepath):
         try:

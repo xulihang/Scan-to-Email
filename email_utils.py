@@ -15,7 +15,7 @@ def send(msg,to):
         account = get_account()
         passwd = get_passwd()
         server = smtplib.SMTP()
-        server.connect('smtp.exmail.qq.com')
+        server.connect(get_smtp_server())
         server.login(account,passwd)
         server.sendmail(account, to, msg.as_string())
         server.quit()
@@ -51,6 +51,11 @@ def get_passwd():
     with open('account') as f:
         content = f.readlines()
         return content[1].strip()
+        
+def get_smtp_server():
+    with open('account') as f:
+        content = f.readlines()
+        return content[2].strip()        
 
 
 if __name__ == '__main__':
