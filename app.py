@@ -33,7 +33,7 @@ def emails():
         send_to = request.form['sendto']
         filebytes=f.read()
         result=False
-        if len(filebytes)>1*1024*1024:
+        if len(filebytes)>10*1024*1024:
             dbx = dropbox_helper.dropbox_helper()
             path = '/{}'.format(f.filename)
             if dbx.upload(filebytes,path):

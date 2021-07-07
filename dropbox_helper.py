@@ -7,6 +7,7 @@ from dropbox.exceptions import ApiError, AuthError
 class dropbox_helper:
 
     def __init__(self):
+        #Create an app and generate your access token here: https://www.dropbox.com/developers/apps/
         self.dbx = dropbox.Dropbox("<access_token>")
 
     def upload(self,filebytes,filepath):
@@ -14,8 +15,6 @@ class dropbox_helper:
             self.dbx.files_upload(filebytes, filepath, mode=WriteMode('overwrite'))
             return True
         except ApiError as err:
-            # This checks for the specific error where a user doesn't have
-            # enough Dropbox space quota to upload this file
             return False
             
     def create_sharing_link(self,filepath):
@@ -26,8 +25,6 @@ class dropbox_helper:
             shared_link_metadata = self.dbx.sharing_create_shared_link(filepath)
             return shared_link_metadata.url
         except ApiError as err:
-            # This checks for the specific error where a user doesn't have
-            # enough Dropbox space quota to upload this file
             return None
         
 
